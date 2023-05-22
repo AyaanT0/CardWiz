@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>CardWiz - The Ultimate FlashCard App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="cssFlashcardAdd">
+        <button id="addFlashyCardyCard">Add Flashcard</button>
+      </div>
+
+      <!--Display Card of Question And Answers Here-->
+      <div id="flashycardycard">
+        <div class="storeFlashyCardyCard"></div>
+      </div>
+    </div>
+
+    <!--Input form for users to fill question and answer-->
+    <div class="qContainer hide" id="addTHeQuestionThingy">
+      <h2>Add Flashcard</h2>
+      <div class="wrapper">
+        <!--Error message because errors are cringe-->
+        <div class="errorSad">
+          <span class="hide" id="error">Input fields cannot be empty!</span>
+        </div>
+        <!--Close Button-->
+        <i class="fa-solid fa-xmark" id="closyclose"></i>
+      </div>
+
+      <label for="question">Question:</label>
+      <textarea
+        class="input"
+        id="question"
+        placeholder="Type the question here..."
+        rows="2"
+      ></textarea>
+      <label for="answer">Answer:</label>
+      <textarea
+        class="input"
+        id="answer"
+        rows="4"
+        placeholder="Type the answer here..."
+      ></textarea>
+      <button id="saveFlashyCardyCard">Save</button>
+    </div>
+
+    <!--JS Script That Was Rewritten Like 25789453879978 Times-->
+    <script src="script.js"></script>
+  </body>
+</html>

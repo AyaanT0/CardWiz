@@ -5,7 +5,11 @@
     font-family: "Comic Sans MS", sans-serif;
   }
   body {
-    background-color: #f7f9fd;
+    background-image: url('thebestbackgroundever.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
   }
   .container {
     width: 90vw;
@@ -177,4 +181,13 @@
       grid-template-columns: 1fr;
       gap: 1.2em;
     }
+  }
+  .logo {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 30%;
+    left: 10%;
+    opacity: 45%;
+    z-index: -1;
   }

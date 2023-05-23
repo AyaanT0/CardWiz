@@ -1,3 +1,5 @@
+/*CARDWIZ
+BY AYAAN TUNIO, KRISH SHAH, VANSH ANAND, AND RAEID USMANALI*/
 const container = document.querySelector(".container");
 const addThing = document.getElementById("addTHeQuestionThingy");
 const cardButton = document.getElementById("saveFlashyCardyCard");

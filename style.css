@@ -1,0 +1,180 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Comic Sans MS", sans-serif;
+  }
+  body {
+    background-color: #f7f9fd;
+  }
+  .container {
+    width: 90vw;
+    max-width: 62.5em;
+    position: relative;
+    margin: auto;
+  }
+  .cssFlashcardAdd {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.2em 1em;
+  }
+  button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .cssFlashcardAdd button {
+    font-size: 1em;
+    background-color: #eb008b;
+    color: #ffffff;
+    padding: 0.8em 1.2em;
+    font-weight: 500;
+    border-radius: 0.4em;
+  }
+  #flashycardycard {
+    margin-top: 1em;
+  }
+  .qContainer {
+    width: 90vw;
+    max-width: 34em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 3em 2em;
+    border-radius: 0.6em;
+    box-shadow: 0 1em 2em rgba(28, 0, 80, 0.1);
+  }
+  .qContainer h2 {
+    font-size: 2.2em;
+    color: #363d55;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-columns: 11fr 1fr;
+    gap: 1em;
+    margin-bottom: 1em;
+  }
+  .errorSad {
+    align-self: center;
+  }
+  #error {
+    color: #ff5353;
+    font-weight: 400;
+  }
+  .fa-xmark {
+    font-size: 1.4em;
+    background-color: #eb008b;
+    height: 1.8em;
+    width: 1.8em;
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    justify-self: flex-end;
+  }
+  label {
+    color: #363d55;
+    font-weight: 600;
+    margin-bottom: 0.3em;
+  }
+  textarea {
+    width: 100%;
+    padding: 0.7em 0.5em;
+    border: 1px solid #d0d0d0;
+    outline: none;
+    color: #414a67;
+    border-radius: 0.3em;
+    resize: none;
+  }
+  textarea:not(:last-child) {
+    margin-bottom: 1.2em;
+  }
+  textarea:focus {
+    border-color: #363d55;
+  }
+  #saveFlashyCardyCard {
+    font-size: 1em;
+    background-color: #eb008b;
+    color: #ffffff;
+    padding: 0.6em 0;
+    border-radius: 0.3em;
+    font-weight: 600;
+  }
+  .storeFlashyCardyCard {
+    display: grid;
+    padding: 0.2em;
+    gap: 1.5em;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .card {
+    background-color: #ffffff;
+    box-shadow: 0 0.4em 1.2em rgba(28, 0, 80, 0.08);
+    padding: 1.2em;
+    border-radius: 0.4em;
+  }
+  .divQuestionFlashy,
+  .divAnswerFlashy {
+    text-align: justify;
+  }
+  .divQuestionFlashy {
+    margin-bottom: 0.5em;
+    font-weight: 500;
+    color: #363d55;
+  }
+  .divAnswerFlashy {
+    margin-top: 1em;
+    font-weight: 400;
+    color: #414a67;
+  }
+  .buttonShowHideFlashyCardyCard {
+    display: block;
+    background-color: #eb008b;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.6em 0;
+    border-radius: 0.3em;
+  }
+  .containerForButton {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .edit,
+  .delete {
+    background-color: transparent;
+    padding: 0.5em;
+    font-size: 1.2em;
+  }
+  .edit {
+    color: #eb008b;
+  }
+  .delete {
+    color: #ff5353;
+  }
+  .hide {
+    display: none;
+  }
+  @media screen and (max-width: 800px) {
+    .storeFlashyCardyCard {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8em;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    body {
+      font-size: 14px;
+    }
+    .storeFlashyCardyCard {
+      grid-template-columns: 1fr;
+      gap: 1.2em;
+    }
+  }

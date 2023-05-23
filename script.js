@@ -7,8 +7,24 @@ const errorMessage = document.getElementById("error");
 const addQuestion = document.getElementById("addFlashyCardyCard");
 const closeBtn = document.getElementById("closyclose");
 let editBool = false;
+let flashcards = [];
 
-//Add question when user clicks 'Add Flashcard' button
+/*way too many issues with this, just made it global so that there were no initial issues*/
+const disableButtons = (value) => {
+  const editButtons = document.getElementsByClassName("edit");
+  Array.from(editButtons).forEach((element) => {
+    element.disabled = value;
+  });
+};
+
+//loads flashcards from localStorage if there are any
+const storedFlashcards = localStorage.getItem("flashcards");
+if (storedFlashcards) {
+  flashcards = JSON.parse(storedFlashcards);
+  viewlist();
+}
+
+//adds a flashcard question box when user clicks 'Add Flashcard' button
 addQuestion.addEventListener("click", () => {
   container.classList.add("hide");
   question.value = "";
@@ -17,39 +33,40 @@ addQuestion.addEventListener("click", () => {
 });
 
 //Hide Create flashcard Card
-closeBtn.addEventListener(
-  "click",
-  (hideQuestion = () => {
+function hideQuestion() {
     container.classList.remove("hide");
     addThing.classList.add("hide");
     if (editBool) {
       editBool = false;
       submitQuestion();
     }
-  })
-);
+  }
+  
+  closeBtn.addEventListener("click", hideQuestion);
+  
 
 //Submit Question
-cardButton.addEventListener(
-  "click",
-  (submitQuestion = () => {
+cardButton.addEventListener("click", () => {
     editBool = false;
-    tempQuestion = question.value.trim();
-    tempAnswer = answer.value.trim();
+    const tempQuestion = question.value.trim();
+    const tempAnswer = answer.value.trim();
     if (!tempQuestion || !tempAnswer) {
       errorMessage.classList.remove("hide");
     } else {
       container.classList.remove("hide");
       errorMessage.classList.add("hide");
+      flashcards.push({ question: tempQuestion, answer: tempAnswer });
+      localStorage.setItem("flashcards", JSON.stringify(flashcards));
       viewlist();
       question.value = "";
       answer.value = "";
     }
-  })
-);
+  });
+
 
 //Card Generate
-function viewlist() {
+/*old code, deprecated in favour of new code below that uses localstorage)*/
+/*function viewlist() {
   var listCard = document.getElementsByClassName("storeFlashyCardyCard");
   var div = document.createElement("div");
   div.classList.add("card");
@@ -59,16 +76,29 @@ function viewlist() {
   //Answer
   var displayAnswer = document.createElement("p");
   displayAnswer.classList.add("divAnswerFlashy", "hide");
-  displayAnswer.innerText = answer.value;
-
-  //Link to show/hide answer
-  var link = document.createElement("a");
-  link.setAttribute("href", "#");
-  link.setAttribute("class", "buttonShowHideFlashyCardyCard");
-  link.innerHTML = "Show/Hide";
-  link.addEventListener("click", () => {
-    displayAnswer.classList.toggle("hide");
-  });
+  displayAnswer.innerText = answer.value;*/
+  function viewlist() {
+    const listCard = document.querySelector(".storeFlashyCardyCard");
+    listCard.innerHTML = ""; // Clear previous flashcards
+  
+    flashcards.forEach((flashcard) => {
+      const div = document.createElement("div");
+      div.classList.add("card");
+      // Question
+      div.innerHTML += `
+        <p class="divQuestionFlashy">${flashcard.question}</p>`;
+      // Answer
+      const displayAnswer = document.createElement("p");
+      displayAnswer.classList.add("divAnswerFlashy", "hide");
+      displayAnswer.innerText = flashcard.answer;
+    // Link to show/hide answer
+    const link = document.createElement("a");
+    link.setAttribute("href", "#");
+    link.setAttribute("class", "buttonShowHideFlashyCardyCard");
+    link.innerHTML = "Show/Hide";
+    link.addEventListener("click", () => {
+      displayAnswer.classList.toggle("hide");
+    });
 
   div.appendChild(link);
   div.appendChild(displayAnswer);
@@ -97,7 +127,8 @@ function viewlist() {
   buttonsCon.appendChild(deleteButton);
 
   div.appendChild(buttonsCon);
-  listCard[0].appendChild(div);
+  listCard.appendChild(div);
+});
   hideQuestion();
 }
 
@@ -112,12 +143,9 @@ const modifyElement = (element, edit = false) => {
     disableButtons(true);
   }
   parentDiv.remove();
-};
-
-//Disable edit and delete buttons
-const disableButtons = (value) => {
-  let editButtons = document.getElementsByClassName("edit");
-  Array.from(editButtons).forEach((element) => {
-    element.disabled = value;
-  });
+  const updatedFlashcards = flashcards.filter(
+    (flashcard) => flashcard.question !== parentQuestion
+  );
+  flashcards = updatedFlashcards;
+  localStorage.setItem("flashcards", JSON.stringify(flashcards));
 };
